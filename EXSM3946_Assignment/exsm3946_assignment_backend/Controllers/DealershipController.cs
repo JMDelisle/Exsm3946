@@ -20,15 +20,23 @@ namespace API_Assignment.Controllers
 
         // GET: api/<CustomerController>
         [HttpGet]
-        [Route("List")]
+        [Route("list")]
         public IEnumerable<Dealership> Get()
         {
             //return _context.Dealerships.ToArray();
-            return (IEnumerable<Dealership>)_context.Dealerships.Select(x => x.Name).ToList();
+            return  _context.Dealerships.ToList();
         }
 
+        [HttpGet]
+        [Route("count")]
+        public int Count()
+        {
+            return _context.Dealerships.Count();
+        }
+
+
         // GET api/<CustomerController>/5
-        [HttpGet("{id}")]
+        [HttpGet]
         public ActionResult<Dealership> Get(string id)
         {
             int providedID;
@@ -82,7 +90,7 @@ namespace API_Assignment.Controllers
         }
 
         // PUT api/<CustomerController>/5
-        [HttpPut("{id}")]
+        [HttpPut]
         public ActionResult Put(string id, string name, string address, string phonenumber)
         {
             int providedID;
@@ -119,7 +127,7 @@ namespace API_Assignment.Controllers
 
 
         // DELETE api/<CustomerController>/5
-        [HttpDelete("{id}")]
+        [HttpDelete]
         public ActionResult Delete(string id)
         {
             int providedID;

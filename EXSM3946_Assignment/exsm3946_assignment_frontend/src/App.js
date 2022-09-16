@@ -6,7 +6,7 @@ export default class App extends Component {
     // 1. Constructor sets a list of default strings.
     constructor(props) {
         super(props);
-        this.state = { dealerships: ["Charlie", "Testing", "testing"], count: 0, loadingList: false, loadingCount: false, name: "", loadingCount: false, manufacturerID: "", loadingCount: false, address: "", loadingCount: false, phonenumber: "" };
+        this.state = { dealerships: [], count: 0, loadingList: false, loadingCount: false, name: "", loadingCount: false, manufacturerID: "", loadingCount: false, address: "", loadingCount: false, phonenumber: "" };
     }
 
     // 2. Render the list of default strings to the page with a refresh button. Rest.
@@ -14,19 +14,22 @@ export default class App extends Component {
     // 6. Render fires and updates the page with the new data that has returned. Rest.
     // If the button is clicked again, it starts again from step 3.
     render() {
-    // Start thread A.
+        // Start thread A.
         let contents = this.state.loadingList || this.state.loadingCount
             ? <p><em>Loading...</em></p>
             : <ul>
                 {this.state.dealerships.map(item =>
-                    <li key={item}>{item} 
-                        <button onClick={(() => { this.removeDealership(item) }).bind(this)}>Delete</button>
-                        <button onClick={(() => { this.updateDealership(item) }).bind(this)}>Update</button>
-                    </li>
+                    <li key={item.id}>{item.name}
+                        <ol key={item.id}>{item.address}
+                            <ol key={item.id}>{item.phonenumber}
+
+                        <button onClick={(() => { this.removeDealership(item.id) }).bind(this)}>Delete</button>
+                        <button onClick={(() => { this.updateDealership(item.id) }).bind(this)}>Update</button>
+                            </ol></ol></li>
                 )
                     // When we click either the delete or update button, it passes "item" (the string in question) into the method. This allows the method to target a specific list item based on which button was clicked.
                 }
-              </ul>;
+            </ul>;
 
         return (
             <div>
@@ -36,15 +39,15 @@ export default class App extends Component {
                 {contents}
 
 
-                <input value={this.state.name} onChange={(event) => { this.setState({ name: event.target.value }); }} type="text" placeholder="Dealership" /><br/>
-                <input value={this.state.manufacturerID} onChange={(event) => { this.setState({ manufacturerID: event.target.value }); }} type="text" placeholder="Manufacturer ID" /><br/>
+                <input value={this.state.name} onChange={(event) => { this.setState({ name: event.target.value }); }} type="text" placeholder="Dealership" /><br />
+                <input value={this.state.manufacturerID} onChange={(event) => { this.setState({ manufacturerID: event.target.value }); }} type="text" placeholder="Manufacturer ID" /><br />
                 <input value={this.state.address} onChange={(event) => { this.setState({ address: event.target.value }); }} type="text" placeholder="Address" /><br />
                 <input value={this.state.phonenumber} onChange={(event) => { this.setState({ phonenumber: event.target.value }); }} type="text" placeholder="Phone Number" /><br />
 
                 <button onClick={(() => {
                     // 3. When the button is clicked, set the state loading to true and begin the fetch method. Changing state triggers render to fire.
                     this.setState({ loading: true });
-                    this.populate();
+                    this.populateDealerships();
                     // Start thread B.
                     // (Thread A continues)
                     //this.populateDealerships(); 
@@ -63,6 +66,7 @@ export default class App extends Component {
     async addName() {
         // Request params gets converted to the query string (the bit after the question mark).
         let requestParams = {
+            id: this.state.id,
             name: this.state.name,
             manufacturerID: this.state.manufacturerID,
             address: this.state.address,
@@ -77,14 +81,19 @@ export default class App extends Component {
         console.log(response);
 
         // If we want to refresh the list automatically, all we have to do is call our update methods at the end.
-       this.populateCount();
-       this.populateDealerships();
+        this.populateCount();
+        this.populateDealerships();
     }
 
     // Remove and update accept a parameter, which is fed by the name of which list item was clicked.
     async removeDealership(stringToRemove) {
         let requestParams = {
-            oldName: stringToRemove
+            id: stringToRemove,
+            name: this.state.name,
+            manufacturerID: this.state.manufacturerID,
+            address: this.state.address,
+            phonenumber: this.state.phonenumber
+
         }
         let requestOptions = {
             method: "DELETE"
@@ -99,11 +108,14 @@ export default class App extends Component {
 
     async updateDealership(stringToUpdate) {
         let requestParams = {
-            oldName: stringToUpdate,
-            name: this.state.name
+            id: stringToUpdate,
+            name: this.state.name,
+            manufacturerID: this.state.manufacturerID,
+            address: this.state.address,
+            phonenumber: this.state.phonenumber
         }
         let requestOptions = {
-            method: "PATCH"
+            method: "PUT"
         }
         const response = await fetch("dealership?" + new URLSearchParams(requestParams), requestOptions);
 
