@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace API_Assignment.Controllers
 {
-    [Route("api/[controller]")] //VehicleManufacturer
+    [Route("[controller]")] //VehicleManufacturer
     [ApiController]
     public class ManufacturerController : Controller
     {

@@ -6,7 +6,7 @@ using static System.Net.Mime.MediaTypeNames;
 
 namespace API_Assignment.Controllers
 {
-    [Route("api/[controller]")] //VehicleModel
+    [Route("[controller]")] //VehicleModel
     [ApiController]
     public class VehicleController : ControllerBase
     {

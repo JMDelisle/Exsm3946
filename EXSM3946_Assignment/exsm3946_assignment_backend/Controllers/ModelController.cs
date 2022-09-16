@@ -6,7 +6,7 @@ using System.Net;
 
 namespace API_Assignment.Controllers
 {
-    [Route("api/[controller]")]  //VehicleModels
+    [Route("[controller]")]  //VehicleModels
     [ApiController]
     public class ModelController : ControllerBase
     {

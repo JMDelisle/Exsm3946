@@ -8,7 +8,7 @@ using System.Xml.Linq;
 
 namespace API_Assignment.Controllers
 {
-    [Route("api/[controller]")] //Dealership
+    [Route("[controller]")] //Dealership
     [ApiController]
     public class DealershipController : ControllerBase
     {
