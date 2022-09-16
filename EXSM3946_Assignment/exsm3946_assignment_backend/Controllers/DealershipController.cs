@@ -20,9 +20,11 @@ namespace API_Assignment.Controllers
 
         // GET: api/<CustomerController>
         [HttpGet]
+        [Route("List")]
         public IEnumerable<Dealership> Get()
         {
-            return _context.Dealerships.ToArray();
+            //return _context.Dealerships.ToArray();
+            return (IEnumerable<Dealership>)_context.Dealerships.Select(x => x.Name).ToList();
         }
 
         // GET api/<CustomerController>/5

@@ -6,7 +6,7 @@ export default class App extends Component {
     // 1. Constructor sets a list of default strings.
     constructor(props) {
         super(props);
-        this.state = { dealerships: ["Charlie", "Testing", "testing"], count: 0, loadingList: false, loadingCount: false, newname: "" };
+        this.state = { dealerships: ["Charlie", "Testing", "testing"], count: 0, loadingList: false, loadingCount: false, name: "", loadingCount: false, manufacturerID: "", loadingCount: false, address: "", loadingCount: false, phonenumber: "" };
     }
 
     // 2. Render the list of default strings to the page with a refresh button. Rest.
@@ -30,10 +30,16 @@ export default class App extends Component {
 
         return (
             <div>
-                <h1 id="tabelLabel" >EXSM </h1>
+                <h1 id="tabelLabel" >EXSM3946 - Assignments </h1>
                 <p>This component demonstrates interacting with a .NET API.</p>
                 <p>There are currently {this.state.count} items stored in the server's cache.</p>
                 {contents}
+
+
+                <input value={this.state.name} onChange={(event) => { this.setState({ name: event.target.value }); }} type="text" placeholder="Dealership" /><br/>
+                <input value={this.state.manufacturerID} onChange={(event) => { this.setState({ manufacturerID: event.target.value }); }} type="text" placeholder="Manufacturer ID" /><br/>
+                <input value={this.state.address} onChange={(event) => { this.setState({ address: event.target.value }); }} type="text" placeholder="Address" /><br />
+                <input value={this.state.phonenumber} onChange={(event) => { this.setState({ phonenumber: event.target.value }); }} type="text" placeholder="Phone Number" /><br />
 
                 <button onClick={(() => {
                     // 3. When the button is clicked, set the state loading to true and begin the fetch method. Changing state triggers render to fire.
@@ -48,26 +54,25 @@ export default class App extends Component {
 
                 }>Refresh</button>
 
-                <input value={this.state.newname} onChange={(event) => { this.setState({ newname: event.target.value }); }} type="text" placeholder="Dealership" />
-            {/*    <input value={this.state.newString} onChange={(event) => { this.setState({ newString: event.target.value }); }} type="text" placeholder="Manufacturer ID" />*/}
-            {/*    <input value={this.state.newString} onChange={(event) => { this.setState({ newString: event.target.value }); }} type="text" placeholder="Address" />*/}
-            {/*    <input value={this.state.newString} onChange={(event) => { this.setState({ newString: event.target.value }); }} type="text" placeholder="Phone Number" />*/}
-                <button onClick={(() => { this.setState({ loading: true }); this.addDealership(); }).bind(this)}>Add </button>
+                <button onClick={(() => { this.setState({ loading: true }); this.addName(); }).bind(this)}>Add </button>
             </div>
         );
         // Thread A ends.
     }
 
-    async addDealership() {
+    async addName() {
         // Request params gets converted to the query string (the bit after the question mark).
         let requestParams = {
-            newname: this.state.newname
+            name: this.state.name,
+            manufacturerID: this.state.manufacturerID,
+            address: this.state.address,
+            phonenumber: this.state.phonenumber
         }
         // Request options is used to specify what method the request will use.
         let requestOptions = {
             method: "POST"
         }
-        const response = await fetch("Dealership?" + new URLSearchParams(requestParams), requestOptions);
+        const response = await fetch("dealership?" + new URLSearchParams(requestParams), requestOptions);
 
         console.log(response);
 
@@ -79,7 +84,7 @@ export default class App extends Component {
     // Remove and update accept a parameter, which is fed by the name of which list item was clicked.
     async removeDealership(stringToRemove) {
         let requestParams = {
-            oldname: stringToRemove
+            oldName: stringToRemove
         }
         let requestOptions = {
             method: "DELETE"
@@ -94,13 +99,13 @@ export default class App extends Component {
 
     async updateDealership(stringToUpdate) {
         let requestParams = {
-            oldname: stringToUpdate,
-            newname: this.state.newname
+            oldName: stringToUpdate,
+            name: this.state.name
         }
         let requestOptions = {
             method: "PATCH"
         }
-        const response = await fetch("Dealership?" + new URLSearchParams(requestParams), requestOptions);
+        const response = await fetch("dealership?" + new URLSearchParams(requestParams), requestOptions);
 
         console.log(response);
 
