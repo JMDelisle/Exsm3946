@@ -21,10 +21,9 @@ export default class Dealership extends Component {
                 {this.state.dealerships.map(item =>
                     <li key={item.id}>
                         <ul>
-                            <li>{item.name}</li>
-                            <li>{item.address}</li>
-                            <li>{item.phonenumber}</li>
-                            <li>{item.name}</li>
+                            <li><b>Dealership Name: </b>{item.name}</li>
+                            <li><b>Address: </b>{item.address}</li>
+                            <li><b>Phone Number: </b>{item.phonenumber}</li>
 
                         </ul>
 

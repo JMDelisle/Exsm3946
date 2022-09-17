@@ -16,15 +16,23 @@ namespace API_Assignment.Controllers
             _context = context;
         }
 
-        // GET: api/<CustomerController>
         [HttpGet]
+        [Route("list")]
         public IEnumerable<VehicleModel> Get()
         {
-            return _context.VehicleModels.ToArray();
+            //return _context.Dealerships.ToArray();
+            return _context.VehicleModels.ToList();
+        }
+
+        [HttpGet]
+        [Route("count")]
+        public int Count()
+        {
+            return _context.VehicleModels.Count();
         }
 
         // GET api/<CustomerController>/5
-        [HttpGet("{id}")]
+        [HttpGet]
         public ActionResult<VehicleModel> Get(string id)
         {
             int providedID;
@@ -78,7 +86,7 @@ namespace API_Assignment.Controllers
         }
 
         // PUT api/<CustomerController>/5
-        [HttpPut("{id}")]
+        [HttpPut]
         public ActionResult Put(string id, string name)
         {
             int providedID;
@@ -113,7 +121,7 @@ namespace API_Assignment.Controllers
 
 
         // DELETE api/<CustomerController>/5
-        [HttpDelete("{id}")]
+        [HttpDelete]
         public ActionResult Delete(string id)
         {
             int providedID;

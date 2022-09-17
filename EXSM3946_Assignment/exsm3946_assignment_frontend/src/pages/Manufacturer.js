@@ -21,8 +21,8 @@ export default class Manufacturer extends Component {
                 {this.state.manufacturers.map(item =>
                     <li key={item.id}>
                         <ul>
-                            <li>{item.id}</li>
-                            <li>{item.name}</li>
+                            <li><b>ID: </b>{item.id}</li>
+                            <li><b>Name: </b>{item.name}</li>
                         </ul>
 
                         <p>

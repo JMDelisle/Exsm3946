@@ -18,13 +18,22 @@ namespace API_Assignment.Controllers
 
         // GET: api/<CustomerController>
         [HttpGet]
+        [Route("list")]
         public IEnumerable<Vehicle> Get()
         {
-            return _context.Vehicles.ToArray();
+            //return _context.Dealerships.ToArray();
+            return _context.Vehicles.ToList();
+        }
+
+        [HttpGet]
+        [Route("count")]
+        public int Count()
+        {
+            return _context.Dealerships.Count();
         }
 
         // GET api/<CustomerController>/5
-        [HttpGet("{id}")]
+        [HttpGet]
         public ActionResult<Vehicle> Get(string vin)
         {
             string providedID;
@@ -90,7 +99,7 @@ namespace API_Assignment.Controllers
         }
 
         // PUT api/<CustomerController>/5
-        [HttpPut("{id}")]
+        [HttpPut]
         public ActionResult Put(string vin, string trimlevel)
         {
             string providedID;
@@ -126,7 +135,7 @@ namespace API_Assignment.Controllers
 
 
         // DELETE api/<CustomerController>/5
-        [HttpDelete("{id}")]
+        [HttpDelete]
         public ActionResult Delete(string vin)
         {
             string providedID;
