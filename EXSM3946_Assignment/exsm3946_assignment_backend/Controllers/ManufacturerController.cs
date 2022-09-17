@@ -8,18 +8,26 @@ namespace API_Assignment.Controllers
     [ApiController]
     public class ManufacturerController : Controller
     {
-        
+
         private readonly DatabaseContext _context;
         public ManufacturerController(DatabaseContext context)
         {
             _context = context;
         }
-
         // GET: api/<CustomerController>
         [HttpGet]
+        [Route("list")]
         public IEnumerable<Manufacturer> Get()
         {
-            return _context.Manufacturers.ToArray();
+            //return _context.Dealerships.ToArray();
+            return _context.Manufacturers.ToList();
+        }
+
+        [HttpGet]
+        [Route("count")]
+        public int Count()
+        {
+            return _context.Manufacturers.Count();
         }
 
         // GET api/<CustomerController>/5
@@ -56,7 +64,7 @@ namespace API_Assignment.Controllers
             }
             try
             {
-                _context.Manufacturers.Add(new Manufacturer() { Name = name});
+                _context.Manufacturers.Add(new Manufacturer() { Name = name });
                 _context.SaveChanges();
                 return Ok();
             }
@@ -67,7 +75,7 @@ namespace API_Assignment.Controllers
         }
 
         // PUT api/<CustomerController>/5
-        [HttpPut("{id}")]
+        [HttpPut]
         public ActionResult Put(string id, string name)
         {
             int providedID;
@@ -102,7 +110,7 @@ namespace API_Assignment.Controllers
 
 
         // DELETE api/<CustomerController>/5
-        [HttpDelete("{id}")]
+        [HttpDelete]
         public ActionResult Delete(string id)
         {
             int providedID;

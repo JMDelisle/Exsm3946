@@ -5,7 +5,6 @@ const context = [
     "/manufacturer",
     "/model",
     "/vehicle",
-    "/weatherforecast"
 ];
 
 module.exports = function (app) {

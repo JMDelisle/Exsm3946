@@ -7,18 +7,18 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
 
-namespace API_Assignment.Migrations
+namespace exsm3946_assignment_backend.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20220906140852_InitialMigration")]
-    partial class InitialMigration
+    [Migration("20220917170636_initialMigrations")]
+    partial class initialMigrations
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .UseCollation("utf8mb4_general_ci")
-                .HasAnnotation("ProductVersion", "6.0.8")
+                .HasAnnotation("ProductVersion", "6.0.9")
                 .HasAnnotation("Relational:MaxIdentifierLength", 64);
 
             MySqlModelBuilderExtensions.HasCharSet(modelBuilder, "utf8mb4");
@@ -31,7 +31,6 @@ namespace API_Assignment.Migrations
                         .HasColumnName("id");
 
                     b.Property<string>("Address")
-                        .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("varchar(50)")
                         .HasColumnName("address");
@@ -41,13 +40,11 @@ namespace API_Assignment.Migrations
                         .HasColumnName("manufacturerid");
 
                     b.Property<string>("Name")
-                        .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("varchar(50)")
                         .HasColumnName("name");
 
                     b.Property<string>("PhoneNumber")
-                        .IsRequired()
                         .HasColumnType("char(10)")
                         .HasColumnName("phonenumber");
 
@@ -68,58 +65,7 @@ namespace API_Assignment.Migrations
                         });
                 });
 
-            modelBuilder.Entity("API_Assignment.Models.Vehicle", b =>
-                {
-                    b.Property<string>("VIN")
-                        .HasColumnType("char(17)")
-                        .HasColumnName("vin");
-
-                    b.Property<int>("DealershipID")
-                        .HasColumnType("int(11)");
-
-                    b.Property<int>("ModelID")
-                        .HasColumnType("int(11)")
-                        .HasColumnName("modelid");
-
-                    b.Property<string>("TrimLevel")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("varchar(50)")
-                        .HasColumnName("trimlevel");
-
-                    b.HasKey("VIN");
-
-                    b.HasIndex(new[] { "DealershipID" }, "FK_Vehicle_Dealership");
-
-                    b.HasIndex(new[] { "ModelID" }, "FK_Vehicle_Model");
-
-                    b.ToTable("vehicle", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            VIN = "1FA6P8TH4J5102322",
-                            DealershipID = 1,
-                            ModelID = 1,
-                            TrimLevel = "Ecoboost"
-                        },
-                        new
-                        {
-                            VIN = "2C3CDXCT7JH260378",
-                            DealershipID = 1,
-                            ModelID = 6,
-                            TrimLevel = "R/T"
-                        },
-                        new
-                        {
-                            VIN = "2HGFC3A51LH220441",
-                            DealershipID = 1,
-                            ModelID = 7,
-                            TrimLevel = "SI"
-                        });
-                });
-
-            modelBuilder.Entity("API_Assignment.Models.VehicleManufacturer", b =>
+            modelBuilder.Entity("API_Assignment.Models.Manufacturer", b =>
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
@@ -127,7 +73,6 @@ namespace API_Assignment.Migrations
                         .HasColumnName("id");
 
                     b.Property<string>("Name")
-                        .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("varchar(50)")
                         .HasColumnName("name");
@@ -161,6 +106,56 @@ namespace API_Assignment.Migrations
                         {
                             ID = 5,
                             Name = "Toyota"
+                        });
+                });
+
+            modelBuilder.Entity("API_Assignment.Models.Vehicle", b =>
+                {
+                    b.Property<string>("VIN")
+                        .HasColumnType("char(17)")
+                        .HasColumnName("vin");
+
+                    b.Property<int>("DealershipID")
+                        .HasColumnType("int(11)");
+
+                    b.Property<int>("ModelID")
+                        .HasColumnType("int(11)")
+                        .HasColumnName("modelid");
+
+                    b.Property<string>("TrimLevel")
+                        .HasMaxLength(50)
+                        .HasColumnType("varchar(50)")
+                        .HasColumnName("trimlevel");
+
+                    b.HasKey("VIN");
+
+                    b.HasIndex(new[] { "DealershipID" }, "FK_Vehicle_Dealership");
+
+                    b.HasIndex(new[] { "ModelID" }, "FK_Vehicle_Model");
+
+                    b.ToTable("vehicle", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            VIN = "1FA6P8TH4J5102322",
+                            DealershipID = 1,
+                            ModelID = 1,
+                            TrimLevel = "Ecoboost"
+                        },
+                        new
+                        {
+                            VIN = "2C3CDXCT7JH260378",
+                            DealershipID = 1,
+                            ModelID = 6,
+                            TrimLevel = "R/T"
+                        },
+                        new
+                        {
+                            VIN = "2HGFC3A51LH220441",
+                            DealershipID = 1,
+                            ModelID = 7,
+                            TrimLevel = "SI"
                         });
                 });
 
@@ -252,7 +247,7 @@ namespace API_Assignment.Migrations
 
             modelBuilder.Entity("API_Assignment.Models.Dealership", b =>
                 {
-                    b.HasOne("API_Assignment.Models.VehicleManufacturer", "VehicleManufacturer")
+                    b.HasOne("API_Assignment.Models.Manufacturer", "VehicleManufacturer")
                         .WithMany("Dealerships")
                         .HasForeignKey("ManufacturerID")
                         .OnDelete(DeleteBehavior.Restrict)
@@ -285,7 +280,7 @@ namespace API_Assignment.Migrations
 
             modelBuilder.Entity("API_Assignment.Models.VehicleModel", b =>
                 {
-                    b.HasOne("API_Assignment.Models.VehicleManufacturer", "VehicleManufacturer")
+                    b.HasOne("API_Assignment.Models.Manufacturer", "VehicleManufacturer")
                         .WithMany("VehicleModels")
                         .HasForeignKey("ManufacturerID")
                         .OnDelete(DeleteBehavior.Restrict)
@@ -300,7 +295,7 @@ namespace API_Assignment.Migrations
                     b.Navigation("Vehicles");
                 });
 
-            modelBuilder.Entity("API_Assignment.Models.VehicleManufacturer", b =>
+            modelBuilder.Entity("API_Assignment.Models.Manufacturer", b =>
                 {
                     b.Navigation("Dealerships");
 
