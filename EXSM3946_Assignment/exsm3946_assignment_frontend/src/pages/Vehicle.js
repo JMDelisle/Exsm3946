@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 
-export default class Vehicle extends Component {
-    static displayName = Vehicle.name;
+export default class VehicleModel extends Component {
+    static displayName = VehicleModel.name;
 
     // 1. Constructor sets a list of default strings.
     constructor(props) {
         super(props);
-        this.state = { vehicles: [], count: 0, loadingList: false, loadingCount: false, vin: "", loadingCount: false, modelid: "", loadingCount: false, dealershipid: "", loadingCount: false, trimlevel: "" }; 
+        this.state = { vehicles: [], count: 0, loadingList: false, loadingCount: false, vin: "", loadingCount: false, modelid: "", loadingCount: false, dealershipid: "", loadingCount: false, trim: "" }; 
     }
 
     // 2. Render the list of default strings to the page with a refresh button. Rest.
@@ -22,9 +22,9 @@ export default class Vehicle extends Component {
                     <li key={item.id}>
                         <ul>
                             <li><b>VIN: </b>{item.vin}</li>
-                            {/*<li><b>ModelID: </b>{item.modelid}</li>*/}
-                            {/*<li><b>DealershipID: </b>{item.dealershipid}</li>*/}
-                            <li><b>Trim Level: </b>{item.trimlevel}</li>
+                            <li><b>ModelID: </b>{item.modelid}</li>
+                            <li><b>DealershipID: </b>{item.dealershipid}</li>
+                            <li><b>Trim Level: </b>{item.trim}</li>
 
                         </ul>
 
@@ -50,9 +50,9 @@ export default class Vehicle extends Component {
 
 
                 <input value={this.state.vin} onChange={(event) => { this.setState({ vin: event.target.value }); }} type="text" placeholder="VIN" /><br />
-                {/*<input value={this.state.modelid} onChange={(event) => { this.setState({ modelid: event.target.value }); }} type="text" placeholder="Model ID" /><br />*/}
-                {/*<input value={this.state.dealershipid} onChange={(event) => { this.setState({ dealershipid: event.target.value }); }} type="text" placeholder="Dealership ID" /><br />*/}
-                <input value={this.state.trimlevel} onChange={(event) => { this.setState({ trimlevel: event.target.value }); }} type="text" placeholder="Trim Level" /><br />
+                <input value={this.state.modelid} onChange={(event) => { this.setState({ modelid: event.target.value }); }} type="text" placeholder="Model ID" /><br />
+                <input value={this.state.dealershipid} onChange={(event) => { this.setState({ dealershipid: event.target.value }); }} type="text" placeholder="Dealership ID" /><br />
+                <input value={this.state.trim} onChange={(event) => { this.setState({ trim: event.target.value }); }} type="text" placeholder="Trim Level" /><br />
 
                 <button onClick={(() => {
                     // 3. When the button is clicked, set the state loading to true and begin the fetch method. Changing state triggers render to fire.
@@ -77,9 +77,9 @@ export default class Vehicle extends Component {
         // Request params gets converted to the query string (the bit after the question mark).
         let requestParams = {
             vin: this.state.vin,
-            //modelid: this.state.modelid,
-            //dealershipid: this.state.dealershipid,
-            trimlevel: this.state.trimlevel,
+            modelid: this.state.modelid,
+            dealershipid: this.state.dealershipid,
+            trim: this.state.trim,
         }
         // Request options is used to specify what method the request will use.
         let requestOptions = {
@@ -99,9 +99,9 @@ export default class Vehicle extends Component {
         let requestParams = {
             id: stringToRemove,
             vin: this.state.vin,
-            //modelid: this.state.modelid,
-            //dealershipid: this.state.dealershipid,
-            trimlevel: this.state.trimlevel,
+            modelid: this.state.modelid,
+            dealershipid: this.state.dealershipid,
+            trim: this.state.trim,
 
         }
         let requestOptions = {
@@ -119,9 +119,9 @@ export default class Vehicle extends Component {
         let requestParams = {
             id: stringToUpdate,
             vin: this.state.vin,
-            //modelid: this.state.modelid,
-            //dealershipid: this.state.dealershipid,
-            trimlevel: this.state.trimlevel,
+            modelid: this.state.modelid,
+            dealershipid: this.state.dealershipid,
+            trim: this.state.trim,
 
         }
         let requestOptions = {
