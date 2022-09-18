@@ -36,7 +36,7 @@ namespace API_Assignment.Controllers
 
 
         // GET api/<CustomerController>/5
-        [HttpGet]
+        [HttpGet("{id}")]
         public ActionResult<Dealership> Get(string id)
         {
             int providedID;

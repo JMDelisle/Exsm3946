@@ -19,11 +19,11 @@ export default class VehicleModel extends Component {
             ? <p><em>Loading...</em></p>
             : <ul>
                 {this.state.vehicles.map(item =>
-                    <li key={item.id}>
+                    <li key={item.vin}>
                         <ul>
                             <li><b>VIN: </b>{item.vin}</li>
-                            <li><b>ModelID: </b>{item.modelid}</li>
-                            <li><b>DealershipID: </b>{item.dealershipid}</li>
+                            <li><b>Model ID: </b>{item.modelid}</li>
+                            <li><b>Dealership ID: </b>{item.dealershipid}</li>
                             <li><b>Trim Level: </b>{item.trim}</li>
 
                         </ul>
@@ -43,7 +43,7 @@ export default class VehicleModel extends Component {
 
         return (
             <div>
-                <h1 id="tabelLabel" >EXSM3946 - Assignments </h1>
+                <h1 id="tabelLabel" >Vehicle Informations </h1>
                 <p>This component demonstrates interacting with a .NET API.</p>
                 <p>There are currently {this.state.count} items stored in the server's cache.</p>
                 {contents}
@@ -52,7 +52,7 @@ export default class VehicleModel extends Component {
                 <input value={this.state.vin} onChange={(event) => { this.setState({ vin: event.target.value }); }} type="text" placeholder="VIN" /><br />
                 <input value={this.state.modelid} onChange={(event) => { this.setState({ modelid: event.target.value }); }} type="text" placeholder="Model ID" /><br />
                 <input value={this.state.dealershipid} onChange={(event) => { this.setState({ dealershipid: event.target.value }); }} type="text" placeholder="Dealership ID" /><br />
-                <input value={this.state.trim} onChange={(event) => { this.setState({ trim: event.target.value }); }} type="text" placeholder="Trim Level" /><br />
+                <input value={this.state.trimlevel} onChange={(event) => { this.setState({ trimlevel: event.target.value }); }} type="text" placeholder="Trim Level" /><br />
 
                 <button onClick={(() => {
                     // 3. When the button is clicked, set the state loading to true and begin the fetch method. Changing state triggers render to fire.

@@ -8,4 +8,8 @@ Had used James code to create my first dealership page (on app.js) before anythi
 Completed app.js, created folder page, added 4 .js files.
 Started to move file one by one through the pages to complete the work.
 
-Couple bugs found where the id or manid are not displaying the data at all.
+Couple bugs found where the id or manid are not displaying the data at all. Added titles to each pages.
+
+
+
+I had used Web Dev Simplied to set up my Navbar and shout out to him! 

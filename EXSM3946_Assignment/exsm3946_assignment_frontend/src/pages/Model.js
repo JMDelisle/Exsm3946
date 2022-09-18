@@ -37,7 +37,7 @@ export default class Model extends Component {
 
         return (
             <div>
-                <h1 id="tabelLabel" >EXSM3946 - Assignments </h1>
+                <h1 id="tabelLabel" >Model Informations </h1>
                 <p>This component demonstrates interacting with a .NET API.</p>
                 <p>There are currently {this.state.count} items stored in the server's cache.</p>
                 {contents}
