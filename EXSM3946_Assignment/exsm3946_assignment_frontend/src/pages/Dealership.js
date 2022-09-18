@@ -6,7 +6,7 @@ export default class Dealership extends Component {
     // 1. Constructor sets a list of default strings.
     constructor(props) {
         super(props);
-        this.state = { dealerships: [], count: 0, loadingList: false, loadingCount: false, name: "", loadingCount: false, manufacturerID: "", loadingCount: false, address: "", loadingCount: false, phonenumber: "" }; // phonenumber isn't getting picked up!?!
+        this.state = { dealerships: [], count: 0, loadingList: false, loadingCount: false, name: "", loadingCount: false, manufacturerID: "", loadingCount: false, address: "", loadingCount: false, phoneNumber: "" }; // phonenumber isn't getting picked up!?!
     }
 
     // 2. Render the list of default strings to the page with a refresh button. Rest.
@@ -23,7 +23,7 @@ export default class Dealership extends Component {
                         <ul>
                             <li><b>Dealership Name: </b>{item.name}</li>
                             <li><b>Address: </b>{item.address}</li>
-                            <li><b>Phone Number: </b>{item.phonenumber}</li>
+                            <li><b>Phone Number: </b>{item.phoneNumber}</li>
 
                         </ul>
 
@@ -79,7 +79,7 @@ export default class Dealership extends Component {
             name: this.state.name,
             manufacturerID: this.state.manufacturerID,
             address: this.state.address,
-            phonenumber: this.state.phonenumber
+            phoneNumber: this.state.phoneNumber
         }
         // Request options is used to specify what method the request will use.
         let requestOptions = {
@@ -101,7 +101,7 @@ export default class Dealership extends Component {
             name: this.state.name,
             manufacturerID: this.state.manufacturerID,
             address: this.state.address,
-            phonenumber: this.state.phonenumber
+            phoneNumber: this.state.phoneNumber
 
         }
         let requestOptions = {
@@ -121,7 +121,7 @@ export default class Dealership extends Component {
             name: this.state.name,
             manufacturerID: this.state.manufacturerID,
             address: this.state.address,
-            phonenumber: this.state.phonenumber
+            phoneNumber: this.state.phoneNumber
         }
         let requestOptions = {
             method: "PUT"

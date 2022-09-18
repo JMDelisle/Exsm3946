@@ -6,7 +6,7 @@ using static System.Net.Mime.MediaTypeNames;
 
 namespace API_Assignment.Controllers
 {
-    [Route("[controller]")] //VehicleModel
+    [Route("[controller]")] //Vehicle
     [ApiController]
     public class VehicleController : ControllerBase
     {
@@ -29,7 +29,7 @@ namespace API_Assignment.Controllers
         [Route("count")]
         public int Count()
         {
-            return _context.Dealerships.Count();
+            return _context.Vehicles.Count();
         }
 
         // GET api/<CustomerController>/5

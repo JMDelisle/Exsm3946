@@ -6,7 +6,7 @@ export default class VehicleModel extends Component {
     // 1. Constructor sets a list of default strings.
     constructor(props) {
         super(props);
-        this.state = { vehicles: [], count: 0, loadingList: false, loadingCount: false, vin: "", loadingCount: false, modelid: "", loadingCount: false, dealershipid: "", loadingCount: false, trim: "" }; 
+        this.state = { vehicles: [], count: 0, loadingList: false, loadingCount: false, vin: "", loadingCount: false, modelID: "", loadingCount: false, dealershipID: "", loadingCount: false, trimLevel: "" }; 
     }
 
     // 2. Render the list of default strings to the page with a refresh button. Rest.
@@ -22,9 +22,9 @@ export default class VehicleModel extends Component {
                     <li key={item.vin}>
                         <ul>
                             <li><b>VIN: </b>{item.vin}</li>
-                            <li><b>Model ID: </b>{item.modelid}</li>
-                            <li><b>Dealership ID: </b>{item.dealershipid}</li>
-                            <li><b>Trim Level: </b>{item.trim}</li>
+                            <li><b>Model ID: </b>{item.modelID}</li>
+                            <li><b>Dealership ID: </b>{item.dealershipID}</li>
+                            <li><b>Trim Level: </b>{item.trimLevel}</li>
 
                         </ul>
 
@@ -50,9 +50,9 @@ export default class VehicleModel extends Component {
 
 
                 <input value={this.state.vin} onChange={(event) => { this.setState({ vin: event.target.value }); }} type="text" placeholder="VIN" /><br />
-                <input value={this.state.modelid} onChange={(event) => { this.setState({ modelid: event.target.value }); }} type="text" placeholder="Model ID" /><br />
-                <input value={this.state.dealershipid} onChange={(event) => { this.setState({ dealershipid: event.target.value }); }} type="text" placeholder="Dealership ID" /><br />
-                <input value={this.state.trimlevel} onChange={(event) => { this.setState({ trimlevel: event.target.value }); }} type="text" placeholder="Trim Level" /><br />
+                <input value={this.state.modelID} onChange={(event) => { this.setState({ modelID: event.target.value }); }} type="text" placeholder="Model ID" /><br />
+                <input value={this.state.dealershipID} onChange={(event) => { this.setState({ dealershipID: event.target.value }); }} type="text" placeholder="Dealership ID" /><br />
+                <input value={this.state.trimLevel} onChange={(event) => { this.setState({ trimLevel: event.target.value }); }} type="text" placeholder="Trim Level" /><br />
 
                 <button onClick={(() => {
                     // 3. When the button is clicked, set the state loading to true and begin the fetch method. Changing state triggers render to fire.
@@ -77,9 +77,9 @@ export default class VehicleModel extends Component {
         // Request params gets converted to the query string (the bit after the question mark).
         let requestParams = {
             vin: this.state.vin,
-            modelid: this.state.modelid,
-            dealershipid: this.state.dealershipid,
-            trim: this.state.trim,
+            modelID: this.state.modelID,
+            dealershipID: this.state.dealershipID,
+            trimLevel: this.state.trimLevel,
         }
         // Request options is used to specify what method the request will use.
         let requestOptions = {
@@ -99,9 +99,9 @@ export default class VehicleModel extends Component {
         let requestParams = {
             id: stringToRemove,
             vin: this.state.vin,
-            modelid: this.state.modelid,
-            dealershipid: this.state.dealershipid,
-            trim: this.state.trim,
+            modelID: this.state.modelID,
+            dealershipID: this.state.dealershipID,
+            trimLevel: this.state.trimLevel,
 
         }
         let requestOptions = {
@@ -119,9 +119,9 @@ export default class VehicleModel extends Component {
         let requestParams = {
             id: stringToUpdate,
             vin: this.state.vin,
-            modelid: this.state.modelid,
-            dealershipid: this.state.dealershipid,
-            trim: this.state.trim,
+            modelID: this.state.modelID,
+            dealershipID: this.state.dealershipID,
+            trimLevel: this.state.trimLevel,
 
         }
         let requestOptions = {

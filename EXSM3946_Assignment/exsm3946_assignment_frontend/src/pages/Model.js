@@ -21,7 +21,7 @@ export default class Model extends Component {
                     <li key={item.id}>
                         <ul>
                             <li><b>ID:</b> {item.id}</li>
-                            <li><b>ManufacturerID:</b> {item.manufacturerID}</li>
+                            <li><b>Manufacturer ID:</b> {item.manufacturerID}</li>
                             <li><b>Model:</b> {item.name}</li>
                         </ul>
 
