@@ -6,13 +6,22 @@ body {
     margin: 0;
 }
 
+h1 {
+    text-align:center;
+    color: darkred;
+}
+
+.title {
+    color: black;
+}
+
 .container {
     margin: 1rem;
     text-align: center;
 }
 
 .nav {
-    background-color: #333;
+    background-color: #1165ed;
     color: white;
     display: flex;
     justify-content: space-between;
@@ -43,13 +52,17 @@ body {
 }
 
 .nav li.active {
-    background-color: #555;
+    background-color: #b611ed;
 }
 
 .nav li:hover {
-    background-color: #777;
+    background-color: #d576f5;
 }
 
 ol, li {
     list-style: none;
+}
+
+span {
+    color: red;
 }

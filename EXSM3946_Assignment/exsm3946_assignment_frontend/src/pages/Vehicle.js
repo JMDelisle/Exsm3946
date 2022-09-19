@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
-export default class VehicleModel extends Component {
-    static displayName = VehicleModel.name;
+export default class Vehicle extends Component {
+    static displayName = Vehicle.name;
 
     // 1. Constructor sets a list of default strings.
     constructor(props) {
@@ -43,11 +43,12 @@ export default class VehicleModel extends Component {
 
         return (
             <div>
-                <h1 id="tabelLabel" >Vehicle Informations </h1>
-                <p>This component demonstrates interacting with a .NET API.</p>
+                <h1 className="title" id="tabelLabel" >Vehicle Informations </h1>
+                <h3>Must corrolate with Swagger or Postman to find the determine value!!</h3>
+                <p><span>Please make sure to fill in the blanks accordingly.The ID will auto generate so only Manufacturer ID and Name is needed.</span></p>
+                <p>When you want to delete, only have the VIN# in of which you want to delete.</p>
                 <p>There are currently {this.state.count} items stored in the server's cache.</p>
                 {contents}
-
 
                 <input value={this.state.vin} onChange={(event) => { this.setState({ vin: event.target.value }); }} type="text" placeholder="VIN" /><br />
                 <input value={this.state.modelID} onChange={(event) => { this.setState({ modelID: event.target.value }); }} type="text" placeholder="Model ID" /><br />
@@ -79,7 +80,7 @@ export default class VehicleModel extends Component {
             vin: this.state.vin,
             modelID: this.state.modelID,
             dealershipID: this.state.dealershipID,
-            trimLevel: this.state.trimLevel,
+            trimLevel: this.state.trimLevel
         }
         // Request options is used to specify what method the request will use.
         let requestOptions = {
@@ -97,11 +98,10 @@ export default class VehicleModel extends Component {
     // Remove and update accept a parameter, which is fed by the name of which list item was clicked.
     async removeVehicle(stringToRemove) {
         let requestParams = {
-            id: stringToRemove,
             vin: this.state.vin,
-            modelID: this.state.modelID,
-            dealershipID: this.state.dealershipID,
-            trimLevel: this.state.trimLevel,
+            //modelID: this.state.modelID,
+            //dealershipID: this.state.dealershipID,
+            //trimLevel: this.state.trimLevel,
 
         }
         let requestOptions = {

@@ -6,7 +6,7 @@ export default class Model extends Component {
     // 1. Constructor sets a list of default strings.
     constructor(props) {
         super(props);
-        this.state = { models: [], count: 0, loadingList: false, loadingCount: false, id: "", loadingCount: false, manufacturerID: "", loadingCount: false, name: "", loadingCount: false, phonenumber: "" };    }
+        this.state = { models: [], count: 0, loadingList: false, loadingCount: false, id: "", loadingCount: false, manufacturerID: "", loadingCount: false, name: "", loadingCount: false};    }
 
     // 2. Render the list of default strings to the page with a refresh button. Rest.
     // 4. Render fires and sets the loading message, and awaits another state change.
@@ -20,7 +20,7 @@ export default class Model extends Component {
                 {this.state.models.map(item =>
                     <li key={item.id}>
                         <ul>
-                            <li><b>ID:</b> {item.id}</li>
+                            <li><b>ID</b> {item.id}</li>
                             <li><b>Manufacturer ID:</b> {item.manufacturerID}</li>
                             <li><b>Model:</b> {item.name}</li>
                         </ul>
@@ -37,15 +37,17 @@ export default class Model extends Component {
 
         return (
             <div>
-                <h1 id="tabelLabel" >Model Informations </h1>
-                <p>This component demonstrates interacting with a .NET API.</p>
+                <h1 className="title" id="tabelLabel" >Model Informations </h1>
+                <h3>Must corrolate with Swagger or Postman to find the determine value!!</h3>
+                <p><span>Please make sure to fill in the blanks accordingly.The ID will auto generate so only Manufacturer ID and Name is needed.</span></p>
+                <p>When you want to delete, only have the ID# in of which you want to delete.</p>
                 <p>There are currently {this.state.count} items stored in the server's cache.</p>
                 {contents}
 
 
-                <input value={this.state.id} onChange={(event) => { this.setState({ id: event.target.value }); }} type="text" placeholder="ID" /><br />
+                <input value={this.state.id} onChange={(event) => { this.setState({ id: event.target.value }); }} type="text" placeholder="ID use only on delete" /><br /><br/>
                 <input value={this.state.manufacturerID} onChange={(event) => { this.setState({ manufacturerID: event.target.value }); }} type="text" placeholder="Manufacturer ID" /><br />
-                <input value={this.state.name} onChange={(event) => { this.setState({ name: event.target.value }); }} type="text" placeholder="Name" /><br />
+                <input value={this.state.name} onChange={(event) => { this.setState({ name: event.target.value }); }} type="text" placeholder="Model Name" /><br />
                 <button onClick={(() => {
                     // 3. When the button is clicked, set the state loading to true and begin the fetch method. Changing state triggers render to fire.
                     this.setState({ loading: true });
@@ -86,12 +88,12 @@ export default class Model extends Component {
     }
 
     // Remove and update accept a parameter, which is fed by the name of which list item was clicked.
-    async removeDealership(stringToRemove) {
+    async removeModel(stringToRemove) {
         let requestParams = {
-            id: stringToRemove,
+            //id: stringToRemove,
             id: this.state.id,
-            manufacturerID: this.state.manufacturerID,
-            name: this.state.name,
+        //    name: this.state.name,
+        //    manufacturerID: this.state.manufacturerID,
         }
         let requestOptions = {
             method: "DELETE"
@@ -104,7 +106,7 @@ export default class Model extends Component {
         this.populateModels();
     }
 
-    async updateDealership(stringToUpdate) {
+    async updateModel(stringToUpdate) {
         let requestParams = {
             id: stringToUpdate,
             id: this.state.id,

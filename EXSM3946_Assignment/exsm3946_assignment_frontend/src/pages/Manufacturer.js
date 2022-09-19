@@ -26,8 +26,8 @@ export default class Manufacturer extends Component {
                         </ul>
 
                         <p>
-                            <button onClick={(() => { this.removeDealership(item.id) }).bind(this)}>Delete</button>
-                            <button onClick={(() => { this.updateDealership(item.id) }).bind(this)}>Update</button>
+                            <button onClick={(() => { this.removeManufacturer(item.id) }).bind(this)}>Delete</button>
+                            <button onClick={(() => { this.updateManufacturer(item.id) }).bind(this)}>Update</button>
                         </p>
                     </li>
                 )
@@ -37,13 +37,15 @@ export default class Manufacturer extends Component {
 
         return (
             <div>
-                <h1 id="tabelLabel" >Manufacturer Informations </h1>
-                <p>This component demonstrates interacting with a .NET API.</p>
+                <h1 className="title" id="tabelLabel" >Manufacturer Informations </h1>
+                <h3>Must corrolate with Swagger or Postman to find the determine value!!</h3>
+                <p><span>Please make sure to fill in the blanks accordingly. The ID will auto generate so only Name is needed.</span></p>
+                <p>When you want to delete, only have the ID# in of which you want to delete.</p>
                 <p>There are currently {this.state.count} items stored in the server's cache.</p>
                 {contents}
 
 
-                <input value={this.state.id} onChange={(event) => { this.setState({ id: event.target.value }); }} type="text" placeholder="Manufacturer ID" /><br />
+                {/*<input value={this.state.id} onChange={(event) => { this.setState({ id: event.target.value }); }} type="text" placeholder="ID" /><br />*/}
                 <input value={this.state.name} onChange={(event) => { this.setState({ name: event.target.value }); }} type="text" placeholder="Name" /><br />
                 <button onClick={(() => {
                     // 3. When the button is clicked, set the state loading to true and begin the fetch method. Changing state triggers render to fire.
@@ -69,9 +71,6 @@ export default class Manufacturer extends Component {
         let requestParams = {
             id: this.state.id,
             name: this.state.name,
-            manufacturerID: this.state.manufacturerID,
-            address: this.state.address,
-            phonenumber: this.state.phonenumber
         }
         // Request options is used to specify what method the request will use.
         let requestOptions = {
@@ -87,14 +86,11 @@ export default class Manufacturer extends Component {
     }
 
     // Remove and update accept a parameter, which is fed by the name of which list item was clicked.
-    async removeDealership(stringToRemove) {
+    async removeManufacturer(stringToRemove) {
         let requestParams = {
             id: stringToRemove,
+            id: this.state.id,
             name: this.state.name,
-            manufacturerID: this.state.manufacturerID,
-            address: this.state.address,
-            phonenumber: this.state.phonenumber
-
         }
         let requestOptions = {
             method: "DELETE"
@@ -107,13 +103,11 @@ export default class Manufacturer extends Component {
         this.populateManufacturers();
     }
 
-    async updateDealership(stringToUpdate) {
+    async updateManufacturer(stringToUpdate) {
         let requestParams = {
             id: stringToUpdate,
             name: this.state.name,
             manufacturerID: this.state.manufacturerID,
-            address: this.state.address,
-            phonenumber: this.state.phonenumber
         }
         let requestOptions = {
             method: "PUT"
