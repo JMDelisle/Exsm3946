@@ -43,7 +43,6 @@ export default class Dealership extends Component {
                 <h1 className="title" id="tabelLabel" >Dealership Informations </h1>
                 <h3>Must corrolate with Swagger or Postman to find the determine value!!</h3>
                 <p><span>Please make sure to fill in the blanks accordingly. The ID will auto generate so only Name, Manufacturer, Address, and Phone Number is needed.</span></p>
-                <p>When you want to delete, only have the ID# in of which you want to delete.</p>
                 <p>There are currently {this.state.count} items stored in the server's cache.</p>
                 {contents}
 

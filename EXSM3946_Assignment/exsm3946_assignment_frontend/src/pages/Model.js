@@ -40,12 +40,11 @@ export default class Model extends Component {
                 <h1 className="title" id="tabelLabel" >Model Informations </h1>
                 <h3>Must corrolate with Swagger or Postman to find the determine value!!</h3>
                 <p><span>Please make sure to fill in the blanks accordingly.The ID will auto generate so only Manufacturer ID and Name is needed.</span></p>
-                <p>When you want to delete, only have the ID# in of which you want to delete.</p>
                 <p>There are currently {this.state.count} items stored in the server's cache.</p>
                 {contents}
 
 
-                <input value={this.state.id} onChange={(event) => { this.setState({ id: event.target.value }); }} type="text" placeholder="ID use only on delete" /><br /><br/>
+                <input value={this.state.id} onChange={(event) => { this.setState({ id: event.target.value }); }} type="text" placeholder="ID " /><br />
                 <input value={this.state.manufacturerID} onChange={(event) => { this.setState({ manufacturerID: event.target.value }); }} type="text" placeholder="Manufacturer ID" /><br />
                 <input value={this.state.name} onChange={(event) => { this.setState({ name: event.target.value }); }} type="text" placeholder="Model Name" /><br />
                 <button onClick={(() => {
@@ -70,7 +69,7 @@ export default class Model extends Component {
     async addName() {
         // Request params gets converted to the query string (the bit after the question mark).
         let requestParams = {
-            id: this.state.id,
+            //id: this.state.id,
             manufacturerID: this.state.manufacturerID,
             name: this.state.name,
         }
@@ -90,8 +89,8 @@ export default class Model extends Component {
     // Remove and update accept a parameter, which is fed by the name of which list item was clicked.
     async removeModel(stringToRemove) {
         let requestParams = {
-            //id: stringToRemove,
-            id: this.state.id,
+            id: stringToRemove,
+        //    id: this.state.id,
         //    name: this.state.name,
         //    manufacturerID: this.state.manufacturerID,
         }

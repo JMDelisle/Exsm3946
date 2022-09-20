@@ -19,7 +19,7 @@ export default class Vehicle extends Component {
             ? <p><em>Loading...</em></p>
             : <ul>
                 {this.state.vehicles.map(item =>
-                    <li key={item.vin}>
+                    <li key={item.id}>
                         <ul>
                             <li><b>VIN: </b>{item.vin}</li>
                             <li><b>Model ID: </b>{item.modelID}</li>
@@ -45,7 +45,7 @@ export default class Vehicle extends Component {
             <div>
                 <h1 className="title" id="tabelLabel" >Vehicle Informations </h1>
                 <h3>Must corrolate with Swagger or Postman to find the determine value!!</h3>
-                <p><span>Please make sure to fill in the blanks accordingly.The ID will auto generate so only Manufacturer ID and Name is needed.</span></p>
+                <p><span>Please make sure to fill in the blanks accordingly.</span></p>
                 <p>When you want to delete, only have the VIN# in of which you want to delete.</p>
                 <p>There are currently {this.state.count} items stored in the server's cache.</p>
                 {contents}
@@ -78,9 +78,9 @@ export default class Vehicle extends Component {
         // Request params gets converted to the query string (the bit after the question mark).
         let requestParams = {
             vin: this.state.vin,
-            modelID: this.state.modelID,
-            dealershipID: this.state.dealershipID,
-            trimLevel: this.state.trimLevel
+            modelid: this.state.modelID,
+            dealershipid: this.state.dealershipID,
+            trim: this.state.trimLevel
         }
         // Request options is used to specify what method the request will use.
         let requestOptions = {
@@ -98,7 +98,8 @@ export default class Vehicle extends Component {
     // Remove and update accept a parameter, which is fed by the name of which list item was clicked.
     async removeVehicle(stringToRemove) {
         let requestParams = {
-            vin: this.state.vin,
+            //vin: stringToRemove
+            vin: this.state.vin
             //modelID: this.state.modelID,
             //dealershipID: this.state.dealershipID,
             //trimLevel: this.state.trimLevel,

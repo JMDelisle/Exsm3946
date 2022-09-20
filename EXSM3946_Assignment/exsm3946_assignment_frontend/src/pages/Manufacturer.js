@@ -40,13 +40,13 @@ export default class Manufacturer extends Component {
                 <h1 className="title" id="tabelLabel" >Manufacturer Informations </h1>
                 <h3>Must corrolate with Swagger or Postman to find the determine value!!</h3>
                 <p><span>Please make sure to fill in the blanks accordingly. The ID will auto generate so only Name is needed.</span></p>
-                <p>When you want to delete, only have the ID# in of which you want to delete.</p>
                 <p>There are currently {this.state.count} items stored in the server's cache.</p>
                 {contents}
 
 
                 {/*<input value={this.state.id} onChange={(event) => { this.setState({ id: event.target.value }); }} type="text" placeholder="ID" /><br />*/}
                 <input value={this.state.name} onChange={(event) => { this.setState({ name: event.target.value }); }} type="text" placeholder="Name" /><br />
+
                 <button onClick={(() => {
                     // 3. When the button is clicked, set the state loading to true and begin the fetch method. Changing state triggers render to fire.
                     this.setState({ loading: true });
@@ -89,8 +89,8 @@ export default class Manufacturer extends Component {
     async removeManufacturer(stringToRemove) {
         let requestParams = {
             id: stringToRemove,
-            id: this.state.id,
-            name: this.state.name,
+        //    id: this.state.id,
+        //    name: this.state.name,
         }
         let requestOptions = {
             method: "DELETE"
