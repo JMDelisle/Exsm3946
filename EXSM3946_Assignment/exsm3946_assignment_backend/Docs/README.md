@@ -5,11 +5,11 @@ Due Date: Sept19/22
 Creating C# React API,
 ---
 Had used James code to create my first dealership page (on app.js) before anything else. 
-Completed app.js, created folder page, added 4 .js files.
-Started to move file one by one through the pages to complete the work.
+Completed app.js, created folder pages, added 4 .js files.
+Started to move file one by one through the pages to complete the page and also modified any issues arises.
 
-Couple bugs found where the id or manid are not displaying the data at all. Added titles to each pages.
+Couple bugs found where the id or manid are not displaying the data at all.(<--They are now fixed) Added titles to each pages and description of what is needed.
 
 
 
-I had used Web Dev Simplied to set up my Navbar and shout out to him! 
+***I had used Web Dev Simplied to set up my Navbar and shout out to him! Shout out to James pointing out some of my errors I had along the way!***

@@ -45,8 +45,7 @@ export default class Vehicle extends Component {
             <div>
                 <h1 className="title" id="tabelLabel" >Vehicle Informations </h1>
                 <h3>Must corrolate with Swagger or Postman to find the determine value!!</h3>
-                <p><span>Please make sure to fill in the blanks accordingly.</span></p>
-                <p>When you want to delete, only have the VIN# in of which you want to delete.</p>
+                <p><span>Please make sure to fill in the blanks accordingly. When you want to delete, only have the VIN# in of which you want to delete.</span></p>
                 <p>There are currently {this.state.count} items stored in the server's cache.</p>
                 {contents}
 

@@ -44,7 +44,7 @@ export default class Model extends Component {
                 {contents}
 
 
-                <input value={this.state.id} onChange={(event) => { this.setState({ id: event.target.value }); }} type="text" placeholder="ID " /><br />
+                {/*<input value={this.state.id} onChange={(event) => { this.setState({ id: event.target.value }); }} type="text" placeholder="ID " /><br />*/}
                 <input value={this.state.manufacturerID} onChange={(event) => { this.setState({ manufacturerID: event.target.value }); }} type="text" placeholder="Manufacturer ID" /><br />
                 <input value={this.state.name} onChange={(event) => { this.setState({ name: event.target.value }); }} type="text" placeholder="Model Name" /><br />
                 <button onClick={(() => {

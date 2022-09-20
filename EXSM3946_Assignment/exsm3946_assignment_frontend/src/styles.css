@@ -4,6 +4,7 @@
 
 body {
     margin: 0;
+    background-color: bisque;
 }
 
 h1 {
@@ -65,4 +66,8 @@ ol, li {
 
 span {
     color: red;
+}
+
+.homepage {
+    background-color: bisque;
 }

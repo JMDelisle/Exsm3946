@@ -46,7 +46,7 @@ export default class Dealership extends Component {
                 <p>There are currently {this.state.count} items stored in the server's cache.</p>
                 {contents}
 
-                <input value={this.state.id} onChange={(event) => { this.setState({ id: event.target.value }); }} type="text" placeholder="ID only on delete" /><br />
+                {/*<input value={this.state.id} onChange={(event) => { this.setState({ id: event.target.value }); }} type="text" placeholder="ID only on delete" /><br />*/}
                 <input value={this.state.name} onChange={(event) => { this.setState({ name: event.target.value }); }} type="text" placeholder="Dealership Name" /><br />
                 <input value={this.state.manufacturerID} onChange={(event) => { this.setState({ manufacturerID: event.target.value }); }} type="text" placeholder="Manufacturer ID" /><br />
                 <input value={this.state.address} onChange={(event) => { this.setState({ address: event.target.value }); }} type="text" placeholder="Address" /><br />
@@ -68,7 +68,10 @@ export default class Dealership extends Component {
                 }>Refresh</button>
 
                 <button onClick={(() => { this.setState({ loading: true }); this.addName(); }).bind(this)}>Add </button>
+                {/*<button onClick="document.getElementById('myInput').value = ''">Clear </button>*/}
+
             </div>
+
         );
         // Thread A ends.
     }
