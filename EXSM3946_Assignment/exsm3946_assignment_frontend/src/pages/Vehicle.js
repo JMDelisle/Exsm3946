@@ -6,7 +6,7 @@ export default class Vehicle extends Component {
     // 1. Constructor sets a list of default strings.
     constructor(props) {
         super(props);
-        this.state = { vehicles: [], count: 0, loadingList: false, loadingCount: false, vin: "", loadingCount: false, modelID: "", loadingCount: false, dealershipID: "", loadingCount: false, trimLevel: "" }; 
+        this.state = { vehicles: [], count: 0, loadingList: false, loadingCount: false, vin: "", loadingCount: false, modelID: "", loadingCount: false, dealershipID: "", loadingCount: false, trimLevel: "", ErrorList: '' }; 
     }
 
     // 2. Render the list of default strings to the page with a refresh button. Rest.
@@ -54,6 +54,9 @@ export default class Vehicle extends Component {
                 <input value={this.state.dealershipID} onChange={(event) => { this.setState({ dealershipID: event.target.value }); }} type="text" placeholder="Dealership ID" /><br />
                 <input value={this.state.trimLevel} onChange={(event) => { this.setState({ trimLevel: event.target.value }); }} type="text" placeholder="Trim Level" /><br />
 
+                <h1>{this.state.ErrorList}</h1>
+
+
                 <button onClick={(() => {
                     // 3. When the button is clicked, set the state loading to true and begin the fetch method. Changing state triggers render to fire.
                     this.setState({ loading: true });
@@ -88,6 +91,9 @@ export default class Vehicle extends Component {
         const response = await fetch("vehicle?" + new URLSearchParams(requestParams), requestOptions);
 
         console.log(response);
+
+        this.setState({ ErrorList: `${response.status}${response.statusText}: Please recheck your data before adding.` })
+
 
         // If we want to refresh the list automatically, all we have to do is call our update methods at the end.
         this.populateCount();

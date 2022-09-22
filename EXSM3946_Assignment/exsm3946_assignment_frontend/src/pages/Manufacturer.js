@@ -6,7 +6,7 @@ export default class Manufacturer extends Component {
     // 1. Constructor sets a list of default strings.
     constructor(props) {
         super(props);
-        this.state = { manufacturers: [], count: 0, loadingList: false, loadingCount: false, id: "", loadingCount: false, name: "" };
+        this.state = { manufacturers: [], count: 0, loadingList: false, loadingCount: false, id: "", loadingCount: false, name: "", ErrorList: ''};
     }
 
     // 2. Render the list of default strings to the page with a refresh button. Rest.
@@ -47,6 +47,8 @@ export default class Manufacturer extends Component {
                 {/*<input value={this.state.id} onChange={(event) => { this.setState({ id: event.target.value }); }} type="text" placeholder="ID" /><br />*/}
                 <input value={this.state.name} onChange={(event) => { this.setState({ name: event.target.value }); }} type="text" placeholder="Name" /><br />
 
+                <h1>{this.state.ErrorList}</h1>
+
                 <button onClick={(() => {
                     // 3. When the button is clicked, set the state loading to true and begin the fetch method. Changing state triggers render to fire.
                     this.setState({ loading: true });
@@ -79,6 +81,9 @@ export default class Manufacturer extends Component {
         const response = await fetch("manufacturer?" + new URLSearchParams(requestParams), requestOptions);
 
         console.log(response);
+
+        this.setState({ ErrorList: `${response.status}${response.statusText}: Please recheck your data before adding.` })
+
 
         // If we want to refresh the list automatically, all we have to do is call our update methods at the end.
         this.populateCount();
@@ -115,6 +120,8 @@ export default class Manufacturer extends Component {
         const response = await fetch("manufacturer?" + new URLSearchParams(requestParams), requestOptions);
 
         console.log(response);
+
+        this.setState({ErrorList:`${response.status}${response.statusText}`})
 
         this.populateCount();
         this.populateManufacturers();

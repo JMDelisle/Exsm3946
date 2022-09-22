@@ -6,7 +6,7 @@ export default class Model extends Component {
     // 1. Constructor sets a list of default strings.
     constructor(props) {
         super(props);
-        this.state = { models: [], count: 0, loadingList: false, loadingCount: false, id: "", loadingCount: false, manufacturerID: "", loadingCount: false, name: "", loadingCount: false};    }
+        this.state = { models: [], count: 0, loadingList: false, loadingCount: false, id: "", loadingCount: false, manufacturerID: "", loadingCount: false, name: "", loadingCount: false, ErrorList:''};    }
 
     // 2. Render the list of default strings to the page with a refresh button. Rest.
     // 4. Render fires and sets the loading message, and awaits another state change.
@@ -47,6 +47,9 @@ export default class Model extends Component {
                 {/*<input value={this.state.id} onChange={(event) => { this.setState({ id: event.target.value }); }} type="text" placeholder="ID " /><br />*/}
                 <input value={this.state.manufacturerID} onChange={(event) => { this.setState({ manufacturerID: event.target.value }); }} type="text" placeholder="Manufacturer ID" /><br />
                 <input value={this.state.name} onChange={(event) => { this.setState({ name: event.target.value }); }} type="text" placeholder="Model Name" /><br />
+
+                <h1>{this.state.ErrorList}</h1>
+
                 <button onClick={(() => {
                     // 3. When the button is clicked, set the state loading to true and begin the fetch method. Changing state triggers render to fire.
                     this.setState({ loading: true });
@@ -80,6 +83,8 @@ export default class Model extends Component {
         const response = await fetch("model?" + new URLSearchParams(requestParams), requestOptions);
 
         console.log(response);
+
+        this.setState({ ErrorList: `${response.status}${response.statusText}: Please recheck your data before adding.` })
 
         // If we want to refresh the list automatically, all we have to do is call our update methods at the end.
         this.populateCount();

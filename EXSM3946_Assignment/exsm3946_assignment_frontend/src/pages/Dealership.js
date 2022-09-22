@@ -3,10 +3,13 @@ import React, { Component } from 'react';
 export default class Dealership extends Component {
     static displayName = Dealership.name;
 
+
+
     // 1. Constructor sets a list of default strings.
     constructor(props) {
         super(props);
-        this.state = { dealerships: [], count: 0, loadingList: false, loadingCount: false, id: '', loadingCount: false, name: '', loadingCount: false, manufacturerID: '', loadingCount: false, address: '', loadingCount: false, phoneNumber: '' }; // phonenumber isn't getting picked up!?!--- it is now working due to name casing was wrong.
+
+        this.state = { dealerships: [], count: 0, loadingList: false, loadingCount: false, id: '', loadingCount: false, name: '', loadingCount: false, manufacturerID: '', loadingCount: false, address: '', loadingCount: false, phoneNumber: '',ErrorList: '' }; // phonenumber isn't getting picked up!?!--- it is now working due to name casing was wrong.
     }
 
     // 2. Render the list of default strings to the page with a refresh button. Rest.
@@ -30,7 +33,8 @@ export default class Dealership extends Component {
 
                         <p>
                             <button onClick={(() => { this.removeDealership(item.id) }).bind(this)}>Delete</button>
-                            <button onClick={(() => { this.updateDealership(item.id) }).bind(this)}>Update</button>
+                                <button onClick={(() => { this.updateDealership(item.id) }).bind(this)}>Update</button>
+
                         </p>
                     </li>
                 )
@@ -51,6 +55,8 @@ export default class Dealership extends Component {
                 <input value={this.state.manufacturerID} onChange={(event) => { this.setState({ manufacturerID: event.target.value }); }} type="text" placeholder="Manufacturer ID" /><br />
                 <input value={this.state.address} onChange={(event) => { this.setState({ address: event.target.value }); }} type="text" placeholder="Address" /><br />
                 <input value={this.state.phoneNumber} onChange={(event) => { this.setState({ phoneNumber: event.target.value }); }} type="text" placeholder="Phone Number" /><br />
+
+                <h1>{this.state.ErrorList }</h1>
 
                 <button onClick={(() => {
 
@@ -92,6 +98,8 @@ export default class Dealership extends Component {
         const response = await fetch("dealership?" + new URLSearchParams(requestParams), requestOptions);
 
         console.log(response);
+
+        this.setState({ ErrorList: `${response.status}${response.statusText}: Please recheck your data before adding.` })
 
         // If we want to refresh the list automatically, all we have to do is call our update methods at the end.
         this.populateCount();
