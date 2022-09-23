@@ -48,7 +48,7 @@ export default class Model extends Component {
                 <input value={this.state.manufacturerID} onChange={(event) => { this.setState({ manufacturerID: event.target.value }); }} type="text" placeholder="Manufacturer ID" /><br />
                 <input value={this.state.name} onChange={(event) => { this.setState({ name: event.target.value }); }} type="text" placeholder="Model Name" /><br />
 
-                <h1>{this.state.ErrorList}</h1>
+                <h2>{this.state.ErrorList}</h2>
 
                 <button onClick={(() => {
                     // 3. When the button is clicked, set the state loading to true and begin the fetch method. Changing state triggers render to fire.
@@ -84,7 +84,7 @@ export default class Model extends Component {
 
         console.log(response);
 
-        this.setState({ ErrorList: `${response.status}${response.statusText}: Please recheck your data before adding.` })
+        this.setState({ ErrorList: `${response.status} ${response.statusText}: Please recheck your data before adding.` })
 
         // If we want to refresh the list automatically, all we have to do is call our update methods at the end.
         this.populateCount();
@@ -106,6 +106,7 @@ export default class Model extends Component {
 
         console.log(response);
 
+
         this.populateCount();
         this.populateModels();
     }
@@ -123,6 +124,8 @@ export default class Model extends Component {
         const response = await fetch("model?" + new URLSearchParams(requestParams), requestOptions);
 
         console.log(response);
+
+        this.setState({ ErrorList: `${response.status} ${response.statusText}: Please recheck your data before updating.` })
 
         this.populateCount();
         this.populateModels();

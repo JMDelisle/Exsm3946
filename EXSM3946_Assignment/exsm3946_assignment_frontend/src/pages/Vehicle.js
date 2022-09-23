@@ -54,7 +54,7 @@ export default class Vehicle extends Component {
                 <input value={this.state.dealershipID} onChange={(event) => { this.setState({ dealershipID: event.target.value }); }} type="text" placeholder="Dealership ID" /><br />
                 <input value={this.state.trimLevel} onChange={(event) => { this.setState({ trimLevel: event.target.value }); }} type="text" placeholder="Trim Level" /><br />
 
-                <h1>{this.state.ErrorList}</h1>
+                <h2>{this.state.ErrorList}</h2>
 
 
                 <button onClick={(() => {
@@ -92,7 +92,7 @@ export default class Vehicle extends Component {
 
         console.log(response);
 
-        this.setState({ ErrorList: `${response.status}${response.statusText}: Please recheck your data before adding.` })
+        this.setState({ ErrorList: `${response.status} ${response.statusText}: Please recheck your data before adding.` })
 
 
         // If we want to refresh the list automatically, all we have to do is call our update methods at the end.
@@ -117,6 +117,7 @@ export default class Vehicle extends Component {
 
         console.log(response);
 
+
         this.populateCount();
         this.populateVehicles();
     }
@@ -136,6 +137,8 @@ export default class Vehicle extends Component {
         const response = await fetch("vehicle?" + new URLSearchParams(requestParams), requestOptions);
 
         console.log(response);
+
+        this.setState({ ErrorList: `${response.status} ${response.statusText}: Please recheck your data before updating.` })
 
         this.populateCount();
         this.populateVehicles();
