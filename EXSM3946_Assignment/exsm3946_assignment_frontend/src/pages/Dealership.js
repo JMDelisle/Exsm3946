@@ -74,7 +74,8 @@ export default class Dealership extends Component {
                 }>Refresh</button>
 
                 <button onClick={(() => { this.setState({ loading: true }); this.addName(); }).bind(this)}>Add </button>
-                {/*<button onClick="document.getElementById('myInput').value = ''">Clear </button>*/}
+
+                <button className="buttonClear" onClick={(() => { this.clearScreen() })} >Clear</button>
 
             </div>
 
@@ -164,4 +165,14 @@ export default class Dealership extends Component {
         this.setState({ dealerships: dataList, loading: false });
         // Thread C ends.
     }
+
+    async clearScreen(){
+        (this.setState({ id: "" }));
+        (this.setState({ name: "" }));
+        (this.setState({ manufacturerID: "" }));
+        (this.setState({ address: "" }));
+        (this.setState({ phoneNumber: "" }));
+        (this.setState({ ErrorList: "" }));
+    }
+
 }

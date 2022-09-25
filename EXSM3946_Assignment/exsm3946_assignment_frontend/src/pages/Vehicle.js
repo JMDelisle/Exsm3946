@@ -71,6 +71,8 @@ export default class Vehicle extends Component {
                 }>Refresh</button>
 
                 <button onClick={(() => { this.setState({ loading: true }); this.addName(); }).bind(this)}>Add </button>
+
+                <button className="buttonClear" onClick={(() => { this.clearScreen() })} >Clear</button>
             </div>
         );
         // Thread A ends.
@@ -158,4 +160,14 @@ export default class Vehicle extends Component {
         this.setState({ vehicles: dataList, loading: false });
         // Thread C ends.
     }
+
+    async clearScreen() {
+        (this.setState({ id: "" }));
+        (this.setState({ vin: "" }));
+        (this.setState({ modelID: "" }));
+        (this.setState({ dealershipID: "" }));
+        (this.setState({ trimLevel: "" }));
+        (this.setState({ ErrorList: "" }));
+    }
+
 }

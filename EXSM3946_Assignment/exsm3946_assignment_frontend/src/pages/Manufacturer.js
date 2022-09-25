@@ -63,6 +63,9 @@ export default class Manufacturer extends Component {
                 }>Refresh</button>
 
                 <button onClick={(() => { this.setState({ loading: true }); this.addName(); }).bind(this)}>Add </button>
+
+                <button className="buttonClear" onClick={(() => { this.clearScreen() })} >Clear</button>
+
             </div>
         );
         // Thread A ends.
@@ -143,4 +146,12 @@ export default class Manufacturer extends Component {
         this.setState({ manufacturers: dataList, loading: false });
         // Thread C ends.
     }
+
+    async clearScreen() {
+        (this.setState({ id: "" }));
+        (this.setState({ name: "" }));
+        (this.setState({ manufacturerID: "" }));
+        (this.setState({ ErrorList: "" }));
+    }
+
 }
